@@ -71,12 +71,10 @@ func ParseLine(line string) UE4Line {
 	u.Frame = -1
 	matches = rFrame.FindStringSubmatch(line)
 	if len(matches) == 2 {
-		frame, err := strconv.Atoi(matches[1])
-		if err != nil {
-			frame = -2
+		if frame, err := strconv.Atoi(matches[1]); err == nil {
+			u.Frame = frame
+			line = rFrame.ReplaceAllString(line, "")
 		}
-		u.Frame = frame
-		line = rFrame.ReplaceAllString(line, "")
 	}
 
 	// Fourth, we may encounter a Log Category.
