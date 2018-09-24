@@ -17,10 +17,10 @@ const (
 // UE4Line holds a fully parsed server log line
 type UE4Line struct {
 	Timestamp *time.Time `json:"@timestamp,omitempty"`
-	Frame     int        `json:"frame"`
-	Category  string     `json:"category,omitempty"`
-	Message   string     `json:"message,omitempty"`
-	Level     string     `json:"level"`
+	Message   string     `json:"message"`
+	Frame     int        `json:"fields.frame"`
+	Category  string     `json:"fields.category,omitempty"`
+	Level     string     `json:"fields.level"`
 }
 
 // regular expressions
