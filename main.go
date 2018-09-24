@@ -11,7 +11,7 @@ import (
 
 var (
 	// Version is the app version
-	Version = "0.0.3"
+	Version = "0.0.4"
 )
 
 func printVersion() {
@@ -66,9 +66,11 @@ func main() {
 		}
 	}
 
-	//
+	curLine := 0
 	s := bufio.NewScanner(os.Stdin)
 	for s.Scan() {
+		curLine++
+
 		u := ParseLine(s.Text())
 		fields := make(map[string]interface{})
 
@@ -89,11 +91,12 @@ func main() {
 		}
 		fields["fields.level"] = u.Level
 		fields["message"] = u.Message
+		fields["fields.log_line"] = curLine
 
 		// marshal the results
 		out, err := json.Marshal(fields)
 		if err != nil {
-			fmt.Fprintf(os.Stdout, "{\"level\":\"error\",\"message\":\"error marshalling to json: %v\"}\n", err)
+			fmt.Fprintf(os.Stdout, "{\"level\":\"error\",\"message\":\"error marshalling to json\",\"fields.error\":\"%v\",\"fields.line\":%d}\n", err, curLine)
 			continue
 		}
 
