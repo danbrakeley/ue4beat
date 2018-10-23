@@ -8,4 +8,4 @@ WORKDIR /app
 
 RUN go test .
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o ue4beat .
-RUN gzip ue4beat
+RUN tar -cvzf ue4beat.tar.gz ue4beat
