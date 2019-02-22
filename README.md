@@ -2,6 +2,18 @@
 
 Translate Unreal Engine log lines into Filebeat-compatible json.
 
+---
+---
+---
+
+## DEPRECATED
+
+I wrote a ue4 filebeat module, and am in the process of switching to that instead of running this. It is available to all here: [proletariatgames/filebeat-ue4-module](https://github.com/proletariatgames/filebeat-ue4-module).
+
+---
+---
+---
+
 ## Features
 
 - Removes ANSI escape sequences
